@@ -14,9 +14,7 @@
   - `cd oiwa`
 
 - Install requirements
-  - Using poetry (recommended): `poetry install`
-  - Manually:
-    - `pip install fastapi python-telegram-bot`
+  - `pip install -r requirements.txt`
 
 - Create a new telegram bot using [Botfather](@BotFather)
 

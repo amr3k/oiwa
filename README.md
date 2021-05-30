@@ -1,10 +1,12 @@
 # Open in WhatsApp
+<div align="center" width="100%">
+<img width=200 src="logo.png">
+</div>
 
-## [Demo](https://t.me/OiWA_bot)
+> I was using a great [app](https://github.com/subhamtyagi/openinwa/) to open a whatsapp chat with a given number directly without saving that number in my contact list, but I felt it was overkill and uninstalled it, then searched telegram for a bot doint the same job but couldn't find so decided to make a new one.
 
-## Why?
+## [See it in action](https://t.me/OiWA_bot)
 
-> I was using an [android open source app](https://github.com/subhamtyagi/openinwa/) for that specific purpose, but I was rarely using it, so I uninstalled it from my phone to free up some space (and memory?), then searched telegram a bot that does the same job but couldn't find any so decided to make a new one.
 
 ## Requirements
 
@@ -33,5 +35,3 @@
 
 
 ##### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)
-
-### Some lessons I learned while developing this, I should have used polling in dev environment then after everthing works ok, push to cloud.

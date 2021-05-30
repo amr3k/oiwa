@@ -16,7 +16,7 @@
 - Install requirements
   - `pip install -r requirements.txt`
 
-- Create a new telegram bot using [Botfather](@BotFather)
+- Create a new telegram bot using [Botfather](https://t.me/BotFather)
 
 ## Deploy to vercel
 - Create a free account on [vercel](https://vercel.com)
@@ -30,4 +30,4 @@
 - Just visit this url `https://<your-app>/vercel.app/setwebhook-f443dc992ba6`
 
 
-Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)
+##### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)

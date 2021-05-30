@@ -10,11 +10,11 @@
 
 ## Installation
 - Clone this repo
-  - `git clone`
+  - `git clone https://github.com/416d72/oiwa`
   - `cd oiwa`
 
 - Install requirements
-  - Using poetry (recommended): `poetry init`
+  - Using poetry (recommended): `poetry install`
   - Manually:
     - `pip install fastapi python-telegram-bot`
 
@@ -27,6 +27,9 @@
   - DOMAIN: your vercel application URL
   - BOT_TOKEN: The token you received from botfather
 - Use [vercel cli](https://vercel.com/cli) to upload to your application
+
+## Setup webhook URL
+- Just visit this url `<yourdomain>/setwebhook-f443dc992ba6`
 
 
 Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)

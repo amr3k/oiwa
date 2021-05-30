@@ -6,7 +6,7 @@ from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 from telegram.bot import Bot
 from telegram.chataction import ChatAction
-from telegram.parsemode import ParseMode
+from telegram.parse_mode import ParseMode
 from telegram.update import Update
 
 DOMAIN = environ.get("DOMAIN")
@@ -33,7 +33,7 @@ async def cmd_help(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
         text="You can send the phone number you want to chat with **including international code** (eg. +447419651046)",
-        parsemode=ParseMode.MARKDOWN_V2,
+        parse_mode=ParseMode.MARKDOWN_V2,
     )
 
 
@@ -41,7 +41,7 @@ async def wrong_number(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
         text="❌ Wrong number",
-        parsemode=ParseMode.MARKDOWN_V2,
+        parse_mode=ParseMode.MARKDOWN_V2,
     )
 
 
@@ -49,7 +49,7 @@ async def phone_handler(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
         text=f"[Open Chat](https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','')})",
-        parsemode=ParseMode.MARKDOWN_V2,
+        parse_mode=ParseMode.MARKDOWN_V2,
     )
 
 

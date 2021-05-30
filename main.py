@@ -8,6 +8,9 @@ from telegram.bot import Bot
 from telegram.chataction import ChatAction
 from telegram.parsemode import ParseMode
 from telegram.update import Update
+from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
+from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
+
 
 DOMAIN = environ.get("DOMAIN")
 BOT_TOKEN = environ.get("BOT_TOKEN")
@@ -48,9 +51,16 @@ async def wrong_number(update: Update):
 async def phone_handler(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text=f"[Open Chat](https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','')})",
-        parse_mode=ParseMode.MARKDOWN_V2,
-        disable_web_page_preview=True,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text="🔗 Open chat",
+                        url=f"https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','')}",
+                    )
+                ]
+            ]
+        ),
     )
 
 
@@ -61,7 +71,7 @@ async def update_handler(update: Update):
             await cmd_start(update=update)
         elif update.effective_message.text == "/help":
             await cmd_help(update=update)
-        elif re.match(r"\+[1-9]{1}[\d\s?\-?]{5,20}", update.effective_message.text):
+        elif re.match(r"\+([1-9]{1})([\d\s?\-?]{5,20})", update.effective_message.text):
             await phone_handler(update=update)
         else:
             await wrong_number(update=update)

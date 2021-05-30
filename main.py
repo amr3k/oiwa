@@ -6,7 +6,7 @@ from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
 from telegram.bot import Bot
 from telegram.chataction import ChatAction
-from telegram.parse_mode import ParseMode
+from telegram.parsemode import ParseMode
 from telegram.update import Update
 
 DOMAIN = environ.get("DOMAIN")

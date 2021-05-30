@@ -1,2 +1,2 @@
-fastapi=="^0.65.1"
-python-telegram-bot=="^13.5"
+fastapi
+python-telegram-bot

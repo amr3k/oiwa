@@ -58,7 +58,7 @@ async def update_handler(update: Update):
         update.effective_message.text
         and update.effective_message.entities[0]["length"] < 15
     ):
-        bot.send_chat_action(chat_id=update, action=ChatAction.TYPING)
+        bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
         if update.effective_message.text == "/start":
             await cmd_start(update=update)
         elif update.effective_message.text == "/help":
@@ -68,7 +68,7 @@ async def update_handler(update: Update):
         else:
             await wrong_number(update=update)
     else:
-        cmd_help(update)
+        cmd_help(update=update)
 
 
 @app.post("/telegram-update-4e1cb6")

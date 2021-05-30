@@ -72,7 +72,7 @@ async def update_handler(update: Update):
             await cmd_start(update=update)
         elif update.effective_message.text == "/help":
             await cmd_help(update=update)
-        elif re.match(r"\+[\d\s?\-?]{5,20}", update.effective_message.text):
+        elif re.fullmatch("\+[0-9\s?\-?]{5,20}", update.effective_message.text):
             await phone_handler(update=update)
         else:
             await wrong_number(update=update)

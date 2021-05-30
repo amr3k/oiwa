@@ -54,10 +54,7 @@ async def phone_handler(update: Update):
 
 
 async def update_handler(update: Update):
-    if (
-        update.effective_message.text
-        and update.effective_message.entities[0]["length"] < 15
-    ):
+    if update.effective_message.text:
         bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
         if update.effective_message.text == "/start":
             await cmd_start(update=update)

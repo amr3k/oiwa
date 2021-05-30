@@ -27,7 +27,7 @@
 - Use [vercel cli](https://vercel.com/cli) to upload to your application
 
 ## Setup webhook URL
-- Just visit this url `<yourdomain>/setwebhook-f443dc992ba6`
+- Just visit this url `https://<your-app>/vercel.app/setwebhook-f443dc992ba6`
 
 
 Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)

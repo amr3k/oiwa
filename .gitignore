@@ -130,3 +130,5 @@ dmypy.json
 notes.md
 .vscode/
 .vercel
+poetry.lock
+pyproject.toml

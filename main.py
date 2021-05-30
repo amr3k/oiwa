@@ -50,6 +50,7 @@ async def phone_handler(update: Update):
         chat_id=update.effective_chat.id,
         text=f"[Open Chat](https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','')})",
         parse_mode=ParseMode.MARKDOWN_V2,
+        disable_web_page_preview=True,
     )
 
 

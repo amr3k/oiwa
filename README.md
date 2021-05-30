@@ -1,5 +1,7 @@
 # Open in WhatsApp
 
+## [Demo](https://t.me/OiWA_bot)
+
 ## Why?
 
 > I was using an [android open source app](https://github.com/subhamtyagi/openinwa/) for that specific purpose, but I was rarely using it, so I uninstalled it from my phone to free up some space (and memory?), then searched telegram a bot that does the same job but couldn't find any so decided to make a new one.

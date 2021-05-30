@@ -31,3 +31,5 @@
 
 
 ##### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)
+
+### Some lessons I learned while developing this, I should have used polling in dev environment then after everthing works ok, push to cloud.

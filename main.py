@@ -32,7 +32,7 @@ async def cmd_start(update: Update):
 async def cmd_help(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text="You can send the phone number you want to chat with **including international code** {eg. +447419651046}",
+        text="You can send the phone number you want to chat with **including international code** \(eg. +447419651046\)",
         parse_mode=ParseMode.MARKDOWN_V2,
     )
 

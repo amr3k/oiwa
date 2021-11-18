@@ -10,7 +10,7 @@ from telegram.parsemode import ParseMode
 from telegram.update import Update
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
-
+from telegram.Error import Unauthorized
 
 DOMAIN = environ.get("DOMAIN")
 BOT_TOKEN = environ.get("BOT_TOKEN")
@@ -66,18 +66,21 @@ async def phone_handler(update: Update):
 
 
 async def update_handler(update: Update):
-    if update.effective_message.text:
-        bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
-        if update.effective_message.text == "/start":
-            await cmd_start(update=update)
-        elif update.effective_message.text == "/help":
-            await cmd_help(update=update)
-        elif re.fullmatch("\+[0-9\s?\-?]{5,20}", update.effective_message.text):
-            await phone_handler(update=update)
+    try:
+        if update.effective_message.text:
+            bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
+            if update.effective_message.text == "/start":
+                await cmd_start(update=update)
+            elif update.effective_message.text == "/help":
+                await cmd_help(update=update)
+            elif re.fullmatch("\+[0-9\s?\-?]{5,20}", update.effective_message.text):
+                await phone_handler(update=update)
+            else:
+                await wrong_number(update=update)
         else:
-            await wrong_number(update=update)
-    else:
-        cmd_help(update=update)
+            cmd_help(update=update)
+    except Unauthorized:
+        pass
 
 
 @app.post("/telegram-update-4e1cb6")

@@ -10,7 +10,7 @@ from telegram.parsemode import ParseMode
 from telegram.update import Update
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
-from telegram.Error import Unauthorized
+from telegram.error import Unauthorized
 
 DOMAIN = environ.get("DOMAIN")
 BOT_TOKEN = environ.get("BOT_TOKEN")

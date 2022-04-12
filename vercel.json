@@ -10,5 +10,8 @@
             "src": "/(.*)",
             "dest": "main.py"
         }
-    ]
+    ],
+    "github": {
+	"silent": true
+    }
 }

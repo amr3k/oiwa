@@ -47,7 +47,7 @@ async def robots():
 
 @app.get("/favicon.ico")
 async def favicon():
-    with open("logo.png", "rb") as f:
+    with open("favicon.png", "rb") as f:
         return Response(content=f.read(), media_type="image/png")
 
 

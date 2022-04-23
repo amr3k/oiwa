@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "oiwa"
+version = "0.2.0"
+description = " A simple Telegram bot that converts a phone number to a direct whatsapp chat link"
+license = "GPLv3"
+authors = ["Amr"]
+
+[tool.poetry.dependencies]
+python = "3.10.*"
+fastapi = "^0.75.2"
+python-telegram-bot = "^13.5"
+black = "^22.3.0"
+
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+python-dotenv = "^0.20.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

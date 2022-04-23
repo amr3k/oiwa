@@ -105,7 +105,7 @@ async def update_handler(update: Update):
             else:
                 await wrong_number(update=update)
         else:
-            cmd_help(update=update)
+            await cmd_help(update=update)
     except (Unauthorized, AttributeError, BadRequest):
         pass
 

@@ -3,38 +3,52 @@ from os import environ
 
 from fastapi import FastAPI
 from fastapi.requests import Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 from telegram.bot import Bot
 from telegram.chataction import ChatAction
 from telegram.parsemode import ParseMode
 from telegram.update import Update
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
-from telegram.error import Unauthorized
+from telegram.error import Unauthorized, TelegramError
 
 from dotenv import load_dotenv
+
 load_dotenv()  # take environment variables from .env.
 
 DOMAIN = environ.get("DOMAIN")
 BOT_TOKEN = environ.get("BOT_TOKEN")
+
 try:
     assert DOMAIN != None
     assert BOT_TOKEN != None
 except AssertionError:
     print("\033[31mPlease set the environment variables\033[0m")
     exit(1)
+
 try:
     bot = Bot(BOT_TOKEN)
-except TypeError:
+except (TypeError, TelegramError):
     print("\033[41m⚠️ Invalid bot token\033[0m")
     exit(1)
 
 app = FastAPI()
 
 
+@app.get("/")
+async def robots():
+    return HTMLResponse("")
+
+
 @app.get("/robots.txt")
 async def robots():
     return HTMLResponse("User-agent: *\nDisallow: /")
+
+
+@app.get("/favicon.ico")
+async def favicon():
+    with open("logo.png", "rb") as f:
+        return Response(content=f.read(), media_type="image/png")
 
 
 async def cmd_start(update: Update):

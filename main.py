@@ -12,9 +12,22 @@ from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
 from telegram.error import Unauthorized
 
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
+
 DOMAIN = environ.get("DOMAIN")
 BOT_TOKEN = environ.get("BOT_TOKEN")
-bot = Bot(BOT_TOKEN)
+try:
+    assert DOMAIN != None
+    assert BOT_TOKEN != None
+except AssertionError:
+    print("\033[31mPlease set the environment variables\033[0m")
+    exit(1)
+try:
+    bot = Bot(BOT_TOKEN)
+except TypeError:
+    print("\033[41m⚠️ Invalid bot token\033[0m")
+    exit(1)
 
 app = FastAPI()
 
@@ -27,16 +40,15 @@ async def robots():
 async def cmd_start(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text=f"Hello {update.effective_user.full_name} 👋🏻\nPlease send a phone number you want to chat with including international code",
-        parse_mode=ParseMode.MARKDOWN_V2,
+        text=f"Hello {update.effective_user.full_name} 👋🏻<br>Please send a phone number you want to chat with including international code",
     )
 
 
 async def cmd_help(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text="You can send the phone number you want to chat with **including international code** \(eg \+447419651046\)",
-        parse_mode=ParseMode.MARKDOWN_V2,
+        text="You can send the phone number you want to chat with <b>including international code</b> (eg +447419651046)",
+        parse_mode=ParseMode.HTML,
     )
 
 
@@ -44,7 +56,6 @@ async def wrong_number(update: Update):
     bot.send_message(
         chat_id=update.effective_chat.id,
         text="❌ Wrong number",
-        parse_mode=ParseMode.MARKDOWN_V2,
     )
 
 

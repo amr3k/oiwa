@@ -109,10 +109,8 @@ async def update_handler(update: Update):
                 await wrong_number(update)
         else:
             await cmd_help(update)
-    except (Unauthorized, AttributeError, BadRequest):
-        logging.error(
-            f"🔴 Exception! Message: {update.effective_message.de_json()} \n User: {update.effective_user.full_name} ({update.effective_user.username}) \n Chat: {update.effective_chat.id}"
-        )
+    except (Unauthorized, AttributeError, BadRequest) as err:
+        logging.error(f"🔴 Exception!: {err}")
 
 
 @app.post("/telegram-update-4e1cb6")

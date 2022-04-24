@@ -100,18 +100,18 @@ async def update_handler(update: Update):
                 chat_id=update.effective_chat.id, action=ChatAction.TYPING
             )
             if update.effective_message.text == "/start":
-                await cmd_start(update=update)
+                await cmd_start(update)
             elif update.effective_message.text == "/help":
-                await cmd_help(update=update)
+                await cmd_help(update)
             elif re.fullmatch("\+[0-9\s?\-?]{5,20}", update.effective_message.text):
-                await phone_handler(update=update)
+                await phone_handler(update)
             else:
-                await wrong_number(update=update)
+                await wrong_number(update)
         else:
-            await cmd_help(update=update)
+            await cmd_help(update)
     except (Unauthorized, AttributeError, BadRequest):
         logging.error(
-            f"🔴 Exception! Message: {update.effective_message.text} \n User: {update.effective_user.full_name} ({update.effective_user.username}) \n Chat: {update.effective_chat.id}"
+            f"🔴 Exception! Message: {update.effective_message.de_json()} \n User: {update.effective_user.full_name} ({update.effective_user.username}) \n Chat: {update.effective_chat.id}"
         )
 
 

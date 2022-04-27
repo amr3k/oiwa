@@ -11,7 +11,7 @@ from telegram.parsemode import ParseMode
 from telegram.update import Update
 from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
 from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
-from telegram.error import Unauthorized, TelegramError, BadRequest
+from telegram.error import TelegramError
 
 from dotenv import load_dotenv
 
@@ -109,7 +109,7 @@ async def update_handler(update: Update):
                 await wrong_number(update)
         else:
             await cmd_help(update)
-    except (Unauthorized, AttributeError, BadRequest) as err:
+    except (AttributeError, TelegramError) as err:
         logging.error(f"🔴 Exception!: {err}")
 
 

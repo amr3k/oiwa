@@ -39,7 +39,7 @@ app = FastAPI()
 
 
 @app.get("/")
-async def robots():
+async def index():
     return HTMLResponse("")
 
 

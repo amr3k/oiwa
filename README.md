@@ -10,7 +10,7 @@
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.7+
 
 ## Installation
 - Clone this repo
@@ -23,12 +23,8 @@
 - Create a new telegram bot using [Botfather](https://t.me/BotFather)
 
 ## Deploy to vercel
-- Create a free account on [vercel](https://vercel.com)
-- Create a new application
-- Create required environment variable
-  - DOMAIN: your vercel application URL
-  - BOT_TOKEN: The token you received from botfather
-- Use [vercel cli](https://vercel.com/cli) to upload to your application
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F416d72%2Foiwa&env=DOMAIN,BOT_TOKEN&project-name=open-in-whatsapp&repo-name=open-in-whatsapp)
 
 ## Setup webhook URL
 - Just visit this url `https://<your-app>/vercel.app/setwebhook-f443dc992ba6`

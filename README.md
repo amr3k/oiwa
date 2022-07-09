@@ -1,4 +1,12 @@
 # Open in WhatsApp
+
+![LICENSE](https://img.shields.io/github/license/416d72/oiwa?style=flat&color=ff0000)
+![GitHub issues](https://img.shields.io/github/issues/416d72/oiwa?color=fdf629)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/416d72/oiwa?color=c4fff9&label=Repo%20size)
+![Lines of code](https://img.shields.io/tokei/lines/github/416d72/oiwa?color=e63977)
+[![Hits-of-Code](https://hitsofcode.com/github/416d72/oiwa?branch=main)](https://hitsofcode.com/github/416d72/oiwa/view?branch=main)
+
+
 <div align="center" width="100%">
 <img width=200 src="logo.png">
 </div>

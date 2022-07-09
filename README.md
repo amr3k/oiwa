@@ -16,21 +16,7 @@
 ## [See it in action](https://t.me/OiWA_bot)
 
 
-## Requirements
-
-- Python 3.7+
-
-## Installation
-- Clone this repo
-  - `git clone https://github.com/416d72/oiwa`
-  - `cd oiwa`
-
-- Install requirements
-  - `pip install -r requirements.txt`
-
-- Create a new telegram bot using [Botfather](https://t.me/BotFather)
-
-## Deploy to vercel
+## Deploy your own bot to vercel with one click
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F416d72%2Foiwa&env=DOMAIN,BOT_TOKEN&project-name=open-in-whatsapp&repo-name=open-in-whatsapp)
 
@@ -38,4 +24,15 @@
 - Just visit this url `https://<your-app>/vercel.app/setwebhook-f443dc992ba6`
 
 
-##### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)
+## Development
+**Make sure you have Python `3.9` and [poetry](https://python-poetry.org/) installed.**
+
+- Clone this repo
+  - `git clone https://github.com/416d72/oiwa`
+  - `cd oiwa`
+- Run 
+  - `poetry shell && poetry install`
+  - `uvicorn main:app`
+
+
+###### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)

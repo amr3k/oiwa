@@ -3,14 +3,14 @@ name = "oiwa"
 version = "0.2.1"
 description = " A simple Telegram bot that converts a phone number to a direct whatsapp chat link"
 license = "GPLv3"
-authors = ["Amr"]
+authors = ["Amr <contact@a3k.me>"]
 
 [tool.poetry.dependencies]
 python = "3.9.*"
 fastapi = "^0.75.2"
 python-telegram-bot = "^13.5"
 python-dotenv = "^0.20.0"
-uvicorn = {extras = ["standard"], version = "^0.17.6"}
+uvicorn = { extras = ["standard"], version = "^0.17.6" }
 gunicorn = "^20.1.0"
 
 [tool.poetry.dev-dependencies]

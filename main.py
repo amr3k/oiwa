@@ -85,7 +85,7 @@ async def phone_handler(update: Update):
                 [
                     InlineKeyboardButton(
                         text="🔗 Open chat",
-                        url=f"https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','')}",
+                        url=f"https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','')}&text=",
                     )
                 ]
             ]
@@ -95,7 +95,7 @@ async def phone_handler(update: Update):
 
 async def update_handler(update: Update):
     try:
-        if update.effective_message.text:
+        if update.effective_message and update.effective_message.text:
             bot.send_chat_action(
                 chat_id=update.effective_chat.id, action=ChatAction.TYPING
             )

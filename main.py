@@ -110,7 +110,7 @@ async def update_handler(update: Update):
         else:
             await cmd_help(update)
     except (AttributeError, TelegramError) as err:
-        logging.error(f"🔴 Exception!: {err}")
+        logging.error(f"🔴 Exception!: {err}\nupdate: {update}")
 
 
 @app.post("/telegram-update-4e1cb6")

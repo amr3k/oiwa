@@ -36,3 +36,7 @@
 
 
 ###### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)
+
+## TODO
+
+- Add [docker support](https://github.com/max-pfeiffer/uvicorn-poetry)

@@ -1,6 +1,7 @@
 import logging
 import re
 from os import environ
+from random import sample
 
 from fastapi import FastAPI
 from fastapi.requests import Request
@@ -36,6 +37,28 @@ except (TypeError, TelegramError):
     exit(1)
 
 app = FastAPI()
+GREATINGS = [
+    "Great! Here's your link:",
+    "Sure thing! Take a look at this:",
+    "Alright! You can find your link here:",
+    "Here you go! Just click on the link below:",
+    "No problem! I've got your link ready:",
+    "Ready to go! Here's the link you need:",
+    "Perfect! Your link is just a click away:",
+    "Fantastic! You'll find your link right here:",
+    "Alrighty! Look no further, your link awaits:",
+    "Voilà! Here's the link you've been waiting for:",
+    "Ta-da! Your link is all set up and ready:",
+    "Behold! Your link is at your fingertips:",
+    "Mission accomplished! Your link is here:",
+    "Mission success! Here's the link you requested:",
+    "Drumroll, please! Your link is here:",
+    "Without further ado, here's your link:",
+    "Your wish is my command! Here's your link:",
+    "Eureka! I've found your link. Take a look:",
+    "Look what I found! Your link is right here:",
+    "And there you have it! Your link is ready to use:",
+]
 
 
 @app.get("/")
@@ -78,7 +101,7 @@ async def wrong_number(update: Update):
 
 async def phone_handler(update: Update):
     bot.send_message(
-        text="ok",
+        text=select(GREATINGS, 1),
         chat_id=update.effective_chat.id,
         reply_markup=InlineKeyboardMarkup(
             [

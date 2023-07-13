@@ -108,7 +108,7 @@ async def phone_handler(update: Update):
                 [
                     InlineKeyboardButton(
                         text="🔗 Open chat",
-                        url=f"https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','')}&text=",
+                        url=f"https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','').replace('+','')}&text=",
                     )
                 ]
             ]

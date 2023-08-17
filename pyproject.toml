@@ -6,7 +6,7 @@ license = "GPLv3"
 authors = ["Amr <contact@a3k.me>"]
 
 [tool.poetry.dependencies]
-python = "3.9.*"
+python = "3.11.*"
 fastapi = "^0.75.2"
 python-telegram-bot = "^13.5"
 python-dotenv = "^0.20.0"

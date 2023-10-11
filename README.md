@@ -1,10 +1,10 @@
 # Open in WhatsApp
 
-![LICENSE](https://img.shields.io/github/license/416d72/oiwa?style=flat&color=ff0000)
-![GitHub issues](https://img.shields.io/github/issues/416d72/oiwa?color=fdf629)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/416d72/oiwa?color=c4fff9&label=Repo%20size)
-![Lines of code](https://img.shields.io/tokei/lines/github/416d72/oiwa?color=e63977)
-[![Hits-of-Code](https://hitsofcode.com/github/416d72/oiwa?branch=main)](https://hitsofcode.com/github/416d72/oiwa/view?branch=main)
+![LICENSE](https://img.shields.io/github/license/amr3k/oiwa?style=flat&color=ff0000)
+![GitHub issues](https://img.shields.io/github/issues/amr3k/oiwa?color=fdf629)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/amr3k/oiwa?color=c4fff9&label=Repo%20size)
+![Lines of code](https://img.shields.io/tokei/lines/github/amr3k/oiwa?color=e63977)
+[![Hits-of-Code](https://hitsofcode.com/github/amr3k/oiwa?branch=main)](https://hitsofcode.com/github/amr3k/oiwa/view?branch=main)
 
 
 <div align="center" width="100%">
@@ -18,25 +18,25 @@
 
 ## Deploy your own bot to vercel with one click
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F416d72%2Foiwa&env=DOMAIN,BOT_TOKEN&project-name=open-in-whatsapp&repo-name=open-in-whatsapp)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Famr3k%2Foiwa&env=DOMAIN,BOT_TOKEN&project-name=open-in-whatsapp&repo-name=open-in-whatsapp)
 
-## Setup webhook URL
+### Setup webhook URL
 - Just visit this url `https://<your-app>/vercel.app/setwebhook-f443dc992ba6`
 
+
+## Docker
+
+- I added docker support but due to the big differences in the codebase, I implemented it in the [`docker` branch](https://github.com/amr3k/oiwa/tree/docker)
 
 ## Development
 **Make sure you have Python `3.9` and [poetry](https://python-poetry.org/) installed.**
 
 - Clone this repo
-  - `git clone https://github.com/416d72/oiwa`
+  - `git clone https://github.com/amr3k/oiwa`
   - `cd oiwa`
-- Run 
+- Run
   - `poetry shell && poetry install`
   - `uvicorn main:app`
 
 
 ###### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)
-
-## TODO
-
-- Add [docker support](https://github.com/max-pfeiffer/uvicorn-poetry)

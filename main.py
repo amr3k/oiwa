@@ -3,22 +3,22 @@ import re
 from os import environ
 from random import sample
 
-from fastapi import FastAPI
-from fastapi.requests import Request
-from fastapi.responses import HTMLResponse, Response
-from telegram.bot import Bot
-from telegram.chataction import ChatAction
-from telegram.parsemode import ParseMode
-from telegram.update import Update
-from telegram.inline.inlinekeyboardbutton import InlineKeyboardButton
-from telegram.inline.inlinekeyboardmarkup import InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+
+from telegram.ext import (
+    ApplicationBuilder,
+    ContextTypes,
+    CommandHandler,
+    MessageHandler,
+    filters,
+)
+from telegram.constants import ParseMode, ChatAction
 from telegram.error import TelegramError
 
 from dotenv import load_dotenv
 
 
 class CustomFormatter(logging.Formatter):
-
     grey = "\x1b[38;20m"
     yellow = "\x1b[33;20m"
     red = "\x1b[31;20m"
@@ -55,23 +55,14 @@ logger.addHandler(ch)
 
 load_dotenv()  # take environment variables from .env.
 
-DOMAIN = environ.get("DOMAIN")
 BOT_TOKEN = environ.get("BOT_TOKEN")
 
 try:
-    assert DOMAIN != None
     assert BOT_TOKEN != None
 except AssertionError:
     logger.critical("Please set the environment variables")
     exit(1)
 
-try:
-    bot = Bot(BOT_TOKEN)
-except (TypeError, TelegramError):
-    logger.critical("⚠️ Invalid bot token")
-    exit(1)
-
-app = FastAPI()
 GREATINGS = [
     "Great! Here's your link:",
     "Sure thing! Take a look at this:",
@@ -96,46 +87,49 @@ GREATINGS = [
 ]
 
 
-@app.get("/")
-async def index():
-    return HTMLResponse("")
-
-
-@app.get("/robots.txt")
-async def robots():
-    return HTMLResponse("User-agent: *\nDisallow: /")
-
-
-@app.get("/favicon.ico")
-async def favicon():
-    with open("favicon.png", "rb") as f:
-        return Response(content=f.read(), media_type="image/png")
-
-
-async def cmd_start(update: Update):
-    bot.send_message(
+async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text=f"Hello {update.effective_user.full_name} 👋🏻<br>Please send a phone number you want to chat with including international code",
+        text=f"Hello {update.effective_user.full_name} 👋🏻\nPlease send a phone number you want to chat with",
     )
 
 
-async def cmd_help(update: Update):
-    bot.send_message(
+async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="You can send the phone number you want to chat with <b>including international code</b> (eg +447419651046)",
+        text="You can send the phone number you want to chat with (eg +447419651046)",
         parse_mode=ParseMode.HTML,
     )
 
 
-async def wrong_number(update: Update):
-    bot.send_message(
+async def wrong_number(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_message(
         chat_id=update.effective_chat.id,
         text="❌ Wrong number",
     )
 
 
-async def phone_handler(update: Update):
-    bot.send_message(
+async def main(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.send_chat_action(
+        chat_id=update.effective_chat.id, action=ChatAction.TYPING
+    )
+    try:
+        phone_number_regex = re.compile(
+            "(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
+        )
+        extracted_phone_number = re.sub(r"[^\d]", "", update.effective_message.text)
+        if extracted_phone_number:
+            await phone_handler(update, context, extracted_phone_number)
+        else:
+            await wrong_number(update, context)
+    except (AttributeError, TelegramError) as err:
+        logging.error(f"🔴 Exception!: {err}\nupdate: {update}")
+
+
+async def phone_handler(
+    update: Update, context: ContextTypes.DEFAULT_TYPE, phone_number: str
+):
+    await context.bot.send_message(
         text=sample(GREATINGS, 1)[0],
         chat_id=update.effective_chat.id,
         reply_markup=InlineKeyboardMarkup(
@@ -143,7 +137,7 @@ async def phone_handler(update: Update):
                 [
                     InlineKeyboardButton(
                         text="🔗 Open chat",
-                        url=f"https://api.whatsapp.com/send?phone={update.effective_message.text.replace(' ','').replace('-','').replace('+','')}&text=",
+                        url=f"https://api.whatsapp.com/send?phone={phone_number}&text=",
                     )
                 ]
             ]
@@ -151,38 +145,15 @@ async def phone_handler(update: Update):
     )
 
 
-async def update_handler(update: Update):
-    try:
-        if update.effective_message and update.effective_message.text:
-            bot.send_chat_action(
-                chat_id=update.effective_chat.id, action=ChatAction.TYPING
-            )
-            if update.effective_message.text == "/start":
-                await cmd_start(update)
-            elif update.effective_message.text == "/help":
-                await cmd_help(update)
-            elif re.fullmatch("\+[0-9\s?\-?]{5,20}", update.effective_message.text):
-                await phone_handler(update)
-            else:
-                await wrong_number(update)
-        else:
-            await cmd_help(update)
-    except (AttributeError, TelegramError) as err:
-        logging.error(f"🔴 Exception!: {err}\nupdate: {update}")
+if __name__ == "__main__":
+    application = ApplicationBuilder().token(BOT_TOKEN).build()
 
+    text_handler = MessageHandler(filters.TEXT, main)
+    start_handler = CommandHandler("start", cmd_start)
+    help_handler = CommandHandler("help", cmd_help)
 
-@app.post("/telegram-update-4e1cb6")
-async def webhook_handler(request: Request):
-    data = await request.json()
-    upcoming_update = Update.de_json(data, bot=bot)
-    await update_handler(upcoming_update)
-    return "ok"
+    application.add_handler(start_handler)
+    application.add_handler(help_handler)
+    application.add_handler(text_handler)
 
-
-@app.get("/setwebhook-f443dc992ba6")
-async def set_webhook():
-    s = bot.set_webhook(url=f"{DOMAIN}/telegram-update-4e1cb6")
-    if s:
-        return HTMLResponse("ok")
-    else:
-        return HTMLResponse("Error!")
+    application.run_polling()

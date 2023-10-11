@@ -2,11 +2,9 @@ FROM python:alpine
 
 RUN mkdir /app
 
-COPY . /app
+COPY main.py pyproject.toml poetry.lock /app/
 
-WORKDIR /app
-
-ENV PYTHONPATH=${PYTHONPATH}:${PWD}
+WORKDIR /app/
 
 RUN pip install -U pip setuptools
 
@@ -14,6 +12,4 @@ RUN pip install poetry
 
 RUN poetry config virtualenvs.create false && poetry install --no-dev
 
-EXPOSE 8000
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "port", "8000"]
+CMD ["python", "main.py"]

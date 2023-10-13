@@ -16,7 +16,9 @@
 ## [See it in action](https://t.me/OiWA_bot)
 
 
-## Deploy with docker
+# Deploy
+> If you want to deploy to vercel, you'll find the relevant code in `vercel` branch, just select it from top left branches menu, or locally by running `git checkout vercel`.
+## Using docker
 
 ### Requirements
 
@@ -24,7 +26,7 @@
 
 ### Steps
 
-- Edit `docker-compose.yml`
+- Add your bot token to `docker-compose.yml` file
 - Run `docker-compose up -d`
 
 ## Development

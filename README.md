@@ -23,17 +23,13 @@
 ### Setup webhook URL
 - Just visit this url `https://<your-app>/vercel.app/setwebhook-f443dc992ba6`
 
-
-## Docker
-
-- I added docker support but due to the big differences in the codebase, I implemented it in the [`docker` branch](https://github.com/amr3k/oiwa/tree/docker)
-
 ## Development
 **Make sure you have Python `3.9` and [poetry](https://python-poetry.org/) installed.**
 
 - Clone this repo
   - `git clone https://github.com/amr3k/oiwa`
   - `cd oiwa`
+  - `git checkout vercel`
 - Run
   - `poetry shell && poetry install`
   - `uvicorn main:app`

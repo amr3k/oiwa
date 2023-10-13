@@ -63,7 +63,7 @@ GREATINGS = [
 
 @app.get("/")
 async def index():
-    return HTMLResponse("")
+    return HTMLResponse('<a href="/setwebhook">Setup webhook</a>')
 
 
 @app.get("/robots.txt")
@@ -136,7 +136,7 @@ async def update_handler(update: Update):
         logging.error(f"🔴 Exception!: {err}\nupdate: {update}")
 
 
-@app.post("/telegram-update-4e1cb6")
+@app.post("/telegram-update")
 async def webhook_handler(request: Request):
     data = await request.json()
     upcoming_update = Update.de_json(data, bot=bot)
@@ -144,9 +144,9 @@ async def webhook_handler(request: Request):
     return "ok"
 
 
-@app.get("/setwebhook-f443dc992ba6")
+@app.get("/setwebhook")
 async def set_webhook():
-    s = bot.set_webhook(url=f"{DOMAIN}/telegram-update-4e1cb6")
+    s = bot.set_webhook(url=f"{DOMAIN}/telegram-update")
     if s:
         return HTMLResponse("ok")
     else:

@@ -1,0 +1,6 @@
+version: "3"
+services:
+  myapp:
+    image: amr3k/oiwa
+    environment:
+      - BOT_TOKEN=00000000000:xxxxxxxxx-xxxxx # Replace with your actual BOT_TOKEN

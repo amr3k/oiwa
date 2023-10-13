@@ -16,27 +16,32 @@
 ## [See it in action](https://t.me/OiWA_bot)
 
 
-## Deploy your own bot to vercel with one click
+# Deploy
+> If you want to deploy to vercel, you'll find the relevant code in `vercel` branch, just select it from top left branches menu, or locally by running `git checkout vercel`.
+## Using docker
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Famr3k%2Foiwa&env=DOMAIN,BOT_TOKEN&project-name=open-in-whatsapp&repo-name=open-in-whatsapp)
+### Requirements
 
-### Setup webhook URL
-- Just visit this url `https://<your-app>/vercel.app/setwebhook-f443dc992ba6`
+- [docker-compose](https://github.com/docker/compose)
 
+### Steps
 
-## Docker
-
-- I added docker support but due to the big differences in the codebase, I implemented it in the [`docker` branch](https://github.com/amr3k/oiwa/tree/docker)
+- Add your bot token to `docker-compose.yml` file
+- Run `docker-compose up -d`
 
 ## Development
-**Make sure you have Python `3.9` and [poetry](https://python-poetry.org/) installed.**
+**Make sure you have Python `3.12` and [poetry](https://python-poetry.org/) installed.**
 
 - Clone this repo
   - `git clone https://github.com/amr3k/oiwa`
   - `cd oiwa`
 - Run
   - `poetry shell && poetry install`
-  - `uvicorn main:app`
+  - `python main.py`
+- Build
+  - `docker buildx build --platform linux/amd64,linux/arm64 --load -t oiwa:latest .`
+- Run a docker container from the built image
+  - `docker run -d --name oiwa -e BOT_TOKEN=you_bot_token oiwa`
 
 
 ###### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)

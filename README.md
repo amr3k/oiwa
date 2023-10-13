@@ -36,6 +36,10 @@
 - Run
   - `poetry shell && poetry install`
   - `python main.py`
+- Build
+  - `docker buildx build --platform linux/amd64,linux/arm64 --load -t oiwa:latest .`
+- Run a docker container from the built image
+  - `docker run -d --name oiwa -e BOT_TOKEN=you_bot_token oiwa`
 
 
 ###### Logo was designed by [dtafalonso](https://iconarchive.com/artist/dtafalonso.html) - [deviantart](https://www.deviantart.com/dtafalonso)

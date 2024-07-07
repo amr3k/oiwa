@@ -39,7 +39,7 @@
   - `poetry shell && poetry install`
   - `python main.py`
 - Build
-  - `docker buildx build --platform linux/amd64,linux/arm64 --load -t oiwa:latest .`
+  - `docker buildx build --platform linux/amd64,linux/arm64 --load -t oiwa:<version> .`
 - Run a docker container from the built image
   - `docker run -d --name oiwa -e BOT_TOKEN=you_bot_token oiwa`
 

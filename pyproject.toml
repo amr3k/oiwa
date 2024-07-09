@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "oiwa"
-version = "0.3.0"
+version = "0.3.1"
 description = " A simple Telegram bot that converts a phone number to a direct whatsapp chat link"
 license = "GPLv3"
 authors = ["Amr <contact@a3k.me>"]

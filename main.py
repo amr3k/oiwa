@@ -2,9 +2,7 @@ import logging
 import re
 from os import environ
 from random import sample
-
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-
 from telegram.ext import (
     ApplicationBuilder,
     ContextTypes,
@@ -14,7 +12,6 @@ from telegram.ext import (
 )
 from telegram.constants import ParseMode, ChatAction
 from telegram.error import TelegramError
-
 from dotenv import load_dotenv
 
 
@@ -64,26 +61,26 @@ except AssertionError:
     exit(1)
 
 GREATINGS = [
-    "Great! Here's your link:",
-    "Sure thing! Take a look at this:",
-    "Alright! You can find your link here:",
-    "Here you go! Just click on the link below:",
-    "No problem! I've got your link ready:",
-    "Ready to go! Here's the link you need:",
-    "Perfect! Your link is just a click away:",
-    "Fantastic! You'll find your link right here:",
-    "Alrighty! Look no further, your link awaits:",
-    "Voilà! Here's the link you've been waiting for:",
-    "Ta-da! Your link is all set up and ready:",
-    "Behold! Your link is at your fingertips:",
-    "Mission accomplished! Your link is here:",
-    "Mission success! Here's the link you requested:",
-    "Drumroll, please! Your link is here:",
-    "Without further ado, here's your link:",
-    "Your wish is my command! Here's your link:",
-    "Eureka! I've found your link. Take a look:",
-    "Look what I found! Your link is right here:",
-    "And there you have it! Your link is ready to use:",
+    "Great! Here's your link",
+    "Sure thing! Take a look at this",
+    "Alright! You can find your link here",
+    "Here you go! Just click on the link below",
+    "No problem! I've got your link ready",
+    "Ready to go! Here's the link you need",
+    "Perfect! Your link is just a click away",
+    "Fantastic! You'll find your link right here",
+    "Alrighty! Look no further, your link awaits",
+    "Voilà! Here's the link you've been waiting for",
+    "Ta-da! Your link is all set up and ready",
+    "Behold! Your link is at your fingertips",
+    "Mission accomplished! Your link is here",
+    "Mission success! Here's the link you requested",
+    "Drumroll, please! Your link is here",
+    "Without further ado, here's your link",
+    "Your wish is my command! Here's your link",
+    "Eureka! I've found your link. Take a look",
+    "Look what I found! Your link is right here",
+    "And there you have it! Your link is ready to use",
 ]
 
 

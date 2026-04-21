@@ -30,14 +30,14 @@
 - Run `docker-compose up -d`
 
 ## Development
-**Make sure you have Python `3.12` and [poetry](https://python-poetry.org/) installed.**
+**Make sure you have Python `>=3.14` and [uv](https://docs.astral.sh/uv/) installed.**
 
 - Clone this repo
   - `git clone https://github.com/amr3k/oiwa`
   - `cd oiwa`
 - Run
-  - `poetry shell && poetry install`
-  - `python main.py`
+  - `uv sync`
+  - `uv run python main.py`
 - Build
   - `docker buildx build --platform linux/amd64,linux/arm64 --load -t oiwa:<version> .`
 - Run a docker container from the built image

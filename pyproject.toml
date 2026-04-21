@@ -1,11 +1,13 @@
-[tool.poetry]
+[project]
 name = "oiwa"
 version = "0.3.1"
-description = " A simple Telegram bot that converts a phone number to a direct whatsapp chat link"
-license = "GPLv3"
-authors = ["Amr <contact@a3k.me>"]
+description = "A simple Telegram bot that converts a phone number to a direct WhatsApp chat link"
+readme = "README.md"
+requires-python = ">=3.14"
+license = "GPL-3.0-only"
+authors = [{ name = "Amr", email = "contact@a3k.me" }]
 
-[tool.poetry.dependencies]
-python = "3.12.*"
-python-telegram-bot = "^20.6"
-python-dotenv = "^1.0.0"
+dependencies = [
+    "python-telegram-bot>=22.7",
+    "python-dotenv>=1.2.2",
+]

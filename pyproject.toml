@@ -12,3 +12,15 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "phonenumbers>=9.0.16",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.11",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py314"
+
+[tool.ruff.lint]
+extend-select = ["I"]

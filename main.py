@@ -1,19 +1,20 @@
 import logging
 from os import environ
 from random import sample
+
 import phonenumbers
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from dotenv import load_dotenv
+from phonenumbers.phonenumberutil import NumberParseException, PhoneNumberFormat
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.constants import ChatAction, ParseMode
+from telegram.error import TelegramError
 from telegram.ext import (
     ApplicationBuilder,
-    ContextTypes,
     CommandHandler,
+    ContextTypes,
     MessageHandler,
     filters,
 )
-from telegram.constants import ParseMode, ChatAction
-from telegram.error import TelegramError
-from dotenv import load_dotenv
-from phonenumbers.phonenumberutil import NumberParseException, PhoneNumberFormat
 
 
 class CustomFormatter(logging.Formatter):
@@ -56,7 +57,7 @@ load_dotenv()  # take environment variables from .env.
 BOT_TOKEN = environ.get("BOT_TOKEN")
 
 try:
-    assert BOT_TOKEN != None
+    assert BOT_TOKEN is not None
 except AssertionError:
     logger.critical("Please set the environment variables")
     exit(1)

@@ -38,6 +38,10 @@
 - Run
   - `uv sync`
   - `uv run python main.py`
+- Lint
+  - `uv run ruff check .`
+- Format
+  - `uv run ruff format .`
 - Build
   - `docker buildx build --platform linux/amd64,linux/arm64 --load -t oiwa:<version> .`
 - Run a docker container from the built image

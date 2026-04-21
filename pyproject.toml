@@ -10,4 +10,5 @@ authors = [{ name = "Amr", email = "contact@a3k.me" }]
 dependencies = [
     "python-telegram-bot>=22.7",
     "python-dotenv>=1.2.2",
+    "phonenumbers>=9.0.16",
 ]

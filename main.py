@@ -1,7 +1,7 @@
 import logging
-import re
 from os import environ
 from random import sample
+import phonenumbers
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     ApplicationBuilder,
@@ -13,6 +13,7 @@ from telegram.ext import (
 from telegram.constants import ParseMode, ChatAction
 from telegram.error import TelegramError
 from dotenv import load_dotenv
+from phonenumbers.phonenumberutil import NumberParseException, PhoneNumberFormat
 
 
 class CustomFormatter(logging.Formatter):
@@ -106,17 +107,35 @@ async def wrong_number(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+def normalize_phone_number(raw_text: str) -> str | None:
+    candidate = raw_text.strip()
+
+    if candidate.startswith("00"):
+        candidate = f"+{candidate[2:]}"
+
+    if not candidate.startswith("+"):
+        return None
+
+    try:
+        parsed = phonenumbers.parse(candidate, None)
+    except NumberParseException:
+        return None
+
+    if not phonenumbers.is_valid_number(parsed):
+        return None
+
+    e164_number = phonenumbers.format_number(parsed, PhoneNumberFormat.E164)
+    return e164_number[1:]
+
+
 async def main(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_chat_action(
         chat_id=update.effective_chat.id, action=ChatAction.TYPING
     )
     try:
-        phone_number_regex = re.compile(
-            "(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
-        )
-        extracted_phone_number = re.sub(r"[^\d]", "", update.effective_message.text)
-        if extracted_phone_number:
-            await phone_handler(update, context, extracted_phone_number)
+        normalized_phone_number = normalize_phone_number(update.effective_message.text)
+        if normalized_phone_number:
+            await phone_handler(update, context, normalized_phone_number)
         else:
             await wrong_number(update, context)
     except (AttributeError, TelegramError) as err:
